@@ -1,5 +1,1 @@
-build
-*.zip
-*.pem
-dev
-node_modules
+node_modules/*
