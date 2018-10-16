@@ -1,10 +1,10 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "Pine",
   "manifest_version": 2,
-  "description": "Production",
+  "description": "Automatically discover spatial data",
   "browser_action": {
-    "default_title": "React Chrome Extension Example",
+    "default_title": "Pine",
     "default_popup": "popup.html"
   },
   "icons": {
@@ -18,6 +18,6 @@
   "background": {
     "page": "background.html"
   },
-  "permissions": [ "webRequest","contextMenus", "tabs", "storage", "https://*/*", "http://*/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "permissions": [ "webRequest","contextMenus", "tabs", "storage", "*://*/*" ],
+  "content_security_policy": ""
 }
