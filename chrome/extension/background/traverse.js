@@ -73,6 +73,10 @@ const traverseServer = async (baseUrl) => {
 
     store.dispatch(removeTraversal(baseUrl));
     store.dispatch(addServer(serverTree));
+    const normalized = store.getState().servers[baseUrl];
+    normalized['server'] = baseUrl;
+    console.log(normalized);
+    await axios.post("https://pine.center/insert", normalized);
     console.log(`Finished traversal of ${baseUrl}`);
 }
 

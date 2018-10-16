@@ -1,13 +1,17 @@
-import React, { Component, PropTypes } from 'react';
-import { Provider } from 'react-redux';
+import React, { Component } from 'react';
 import App from './App';
-import {connect} from 'react-redux';
-export default class Root extends Component {
+import {Provider} from 'react-redux';
+class Root extends Component {
   render() {
-    
-    console.log(`POOP! ${this.props.poop}`);
+    console.log("App");
+    console.log(this.props.store);
+    console.log(this.props);
     return (
-        <App store={this.props.store}/>
+      <Provider store={this.props.store}>
+        <App />
+      </Provider>
     );
   }
 }
+
+export default Root
