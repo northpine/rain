@@ -51,23 +51,19 @@ const styles = theme => ({
 class Server extends Component {
 
     render() {
-        const {deleteMe, url, services, folders, classes, markedForDelete, stillTraversing} = this.props;
+        const {deleteMe, url, classes, markedForDelete, stillTraversing} = this.props;
         const color = (markedForDelete) ? 'red' : 'black'
-        if(services || folders) {
-            return (
-                <ExpansionPanel className={classes.root} CollapseProps={{ unmountOnExit: true }} disabled={stillTraversing}>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                        <Typography className={classes.heading}>{url}</Typography>
-                        <FaTrash className={classes.trashCan} onClick={deleteMe} color={color}/>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className={classes.heading}>
-                        <LayerList url={url}/>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            )
-        } else {
-            return null;
-        }
+        return (
+            <ExpansionPanel className={classes.root} CollapseProps={{ unmountOnExit: true }} disabled={stillTraversing}>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                    <Typography className={classes.heading}>{url}</Typography>
+                    <FaTrash className={classes.trashCan} onClick={deleteMe} color={color}/>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails className={classes.heading}>
+                    <LayerList url={url}/>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+        )
     }
 }
 
@@ -77,13 +73,15 @@ const mapStateToProps = (state, props) => {
     if(stillTraversing) {
         return {}
     }
-    return {
-        folders: Object.keys(servers[url].folders),
-        layers: servers[url].layers,
-        url: url,
-        services: Object.keys(servers[url].services),
-        markedForDelete: servers[url].markedForDelete,
-        searchString: state.search.searchString
+    if(servers[url]) {
+        return {
+            url: url,
+            markedForDelete: servers[url].markedForDelete,
+        }
+    } else {
+        return {
+            url: url
+        }
     }
 }
 
