@@ -9,6 +9,7 @@ import theme from '../components/theme';
 import {withStyles} from '@material-ui/core/styles';
 import SearchBox from '../components/SearchBox';
 import { connect } from 'react-redux';
+import openInNewTab from '../utils/openInNewTab';
 const styles = theme => ({
   root: {
     padding: 10
@@ -18,6 +19,8 @@ const styles = theme => ({
     fontSize: 20
   }
 })
+
+const PINE_URL = "https://pine.center"
 
 const mapStateToProps = (state, props) => {
   return {
@@ -41,7 +44,7 @@ export default connect(mapStateToProps)(withStyles(styles)(class App extends Com
       <AppBar position="sticky" color='primary'>
         <Toolbar>
           <Typography style={{color: 'white', fontSize: 20}}>
-            Pine
+            <a style={{textDecoration: 'none', color: "white"}} href={PINE_URL} onClick={openInNewTab(PINE_URL)}>Pine</a>
           </Typography>
           <SearchBox />
         </Toolbar>
